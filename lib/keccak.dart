@@ -21,6 +21,7 @@ class Keccak {
     Uint64List bc = Uint64List(5);
 
     for (int round = 0; round < rounds; round++) {
+      // Theta
       for (int i = 0; i < 5; i++) {
         bc[i] = st[i] ^ st[i + 5] ^ st[i + 10] ^ st[i + 15] ^ st[i + 20];
       }
@@ -32,6 +33,7 @@ class Keccak {
         }
       }
 
+      // Rho Pi
       t = st[1];
       for (int i = 0; i < 24; i++) {
         int j = keccakPiln[i];
@@ -40,6 +42,7 @@ class Keccak {
         t = bc[0];
       }
 
+      // Chi
       for (int j = 0; j < 25; j += 5) {
         for (int i = 0; i < 5; i++) {
           bc[i] = st[j + i];
@@ -49,17 +52,21 @@ class Keccak {
         }
       }
 
+      // Iota
       st[0] ^= keccakRoundConstants[round];
     }
   }
 
+  /*
+    Compute a hash of length outputSize from input 
+  */
   static Uint8List _keccak(Uint8List input, int outputSize) {
     Uint64List st = Uint64List(25);
     Uint8List temp = Uint8List(144);
     ByteData inp = input.buffer.asByteData();
 
     int inlen = input.length;
-    int offset = 0;
+    int offset = 0; // Offset of input array
 
     int rsiz, rsizw;
 
@@ -95,10 +102,18 @@ class Keccak {
     return output;
   }
 
+  /* 
+    Hashes the given input with keccak, into an output hash of 200 bytes. 
+  */
   static Uint8List keccak1600(Uint8List input) {
     return _keccak(input, 200);
   }
 
+  /* 
+    Hashes the given input with keccak, into an output hash of 32 bytes.
+    Copies outputLength bytes of the output and returns it. Output
+    length cannot be larger than 32.
+  */
   static Uint8List keccak(Uint8List input, [int outputLength = 32]) {
     if (outputLength > 32) {
       throw ArgumentError("Output length must be 32 bytes or less!");

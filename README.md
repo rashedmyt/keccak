@@ -1,9 +1,3 @@
-# keccak
+# Keccak
 
-A new Flutter package project.
-
-## Getting Started
-
-For help getting started with Flutter, view our online [documentation](https://flutter.io/).
-
-For help on editing package code, view the [documentation](https://flutter.io/developing-packages/).
+A Dart implementation of pre-NIST keccak generally used in many cryptocurrencies.
