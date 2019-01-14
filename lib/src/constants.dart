@@ -1,3 +1,7 @@
+// Copyright (c) 2018, Rashed Mohammed.
+//
+// Please see the included LICENSE file for more information.
+
 library keccak;
 
 final keccakRoundConstants = [
