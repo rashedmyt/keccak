@@ -1,6 +1,6 @@
 name: keccak
 description: pre-NIST Dart implementation of keccak used by cryptocurrencies.
-version: 1.0.0
+version: 1.0.1
 author: Rashed Mohammed <chandu.rashed@gmail.com>
 homepage: https://github.com/rashedmyt/keccak.git
 
