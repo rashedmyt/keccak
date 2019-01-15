@@ -1,3 +1,7 @@
+## 1.0.3
+
+* Fixed pub issues link
+
 ## 1.0.2
 
 * Complete change to dart from flutter
